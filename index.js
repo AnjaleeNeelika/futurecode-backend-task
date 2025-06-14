@@ -1,8 +1,11 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
 
 // Load environment variables
-require('dotenv').config()
+require("dotenv").config();
+
+// Import routes
+const authRoutes = require("./routes/auth.route");
 
 const app = express();
 
@@ -11,20 +14,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-
-
-app.get('/', (req, res) => {
-    res.send('Hello from Node API')
-});
+app.use("/api/auth", authRoutes);
 
 // DB Connection
-mongoose.connect(process.env.DB_URL)
-.then(() => {
+mongoose
+  .connect(process.env.DB_URL)
+  .then(() => {
     console.log("Connected to the database");
     app.listen(process.env.PORT || 3000, () => {
-        console.log("Server is running on port " + process.env.PORT || 3000);
+      console.log("Server is running on port " + process.env.PORT || 3000);
     });
-})
-.catch(() => {
+  })
+  .catch(() => {
     console.log("Connection failed");
-})
+  });
