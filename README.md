@@ -33,7 +33,7 @@ npm install
 ```
 
 ### 3. Configure environment variables
-Create a .env file at the root of the project referring the .env.example file and include the necessary information.
+Create a .env file at the root of the project (refer the .env.example file) and include the necessary information.
 ```bash
 DB_URL=your_db_url
 PORT=your_port
